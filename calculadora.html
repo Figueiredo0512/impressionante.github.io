@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/d9e614a31e.js" crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+  <title> Impressioante 3D </title>
+</head>
+
+<body style="background-color: rgb(202, 199, 199)">
+
+  <header>
+      <div class="container-fluid ">
+        <nav class="navbar navbar-light bg-light">
+          <a class="navbar-brand">   <h4>  <i class="fas fa-cubes"> </i> Impressioante 3D </h4> </a> 
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+             <h4> <a class="nav-link" href="index.html">Home</a> </h4>
+            </li>
+            <li class="nav-item">
+             <h4> <a class="nav-link" href="sobre.html">Quem Somos</a> </h4> 
+            </li>
+            <li class="nav-item">
+              <h4>  <a class="nav-link" href="calculadora.html">Calculadora</a> </h4>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+  <main>
+    <div class="container">
+
+      <div class="container-fluid mt-4">
+        <h2> Calculadora de custos </h2>
+        <p>Com a calculadora de preço de peças conseguimos estimar qual o peso final da sua impressão,
+          o que é essencial para que possamos fazer as contas de seu gasto e lucro da melhor e mais precisa maneira.</p>
+
+        <p>Os dados da primeira sessão, comprimento de filamento utilizado e tempo de impressão, são dados pelo fatiador
+          utilizado.
+          O diâmetro de filamento mais utilizado no mercado atualmente é de 1.75mm, porém,
+          caso o filamento que você está utilizando for de um diâmetro diferente, o campo está livre para outras
+          medidas.</p>
+      </div>
+
+
+      <table class="table table-striped mt-4">
+        <thead>
+          <tr>
+            <th scope="col">Material</th>
+            <th scope="col">Densidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">PP</th>
+            <td>0,90 g/cm³</td>
+          </tr>
+          <tr>
+            <th scope="row">HiPS</th>
+            <td>1,03 g/cm³</td>
+          </tr>
+          <tr>
+            <th scope="row">ABS</th>
+            <td>1,04 g/cm³</td>
+          </tr>
+          <tr>
+            <th scope="row">BendLay</th>
+            <td>1,05 g/cm³</td>
+          </tr>
+          <tr>
+            <th scope="row">E.P</th>
+            <td>1,10 g/cm³</td>
+          </tr>
+          <tr>
+            <th scope="row">FilaFlex</th>
+            <td>1,21 g/cm³</td>
+          </tr>
+          <tr>
+            <th scope="row">PLA</th>
+            <td>1.24 g/cm³</td>
+          </tr>
+          <tr>
+            <th scope="row">PETg</th>
+            <td>1,27 g/cm³</td>
+          </tr>
+          <tr>
+            <th scope="row">NylonStrong</th>
+            <td>1,52 g/cm³</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="container-fluid" style="background-color: rgb(238, 238, 238)">
+        <form class="needs-validation" novalidate>
+          <div class="form-row mt-4">
+            <div class="col-md-4 mb-4 mt-4">
+              <label for="comprimento"> <i class="far fa-dot-circle" style="color: rgb(38, 11, 136)"></i> Comprimento
+                (mm)</label>
+              <input type="number" class="form-control" id="comprimento" placeholder="Comprimento em milímetros"
+                onkeyup="valida()" required>
+              <div class="invalid-feedback">
+                Informe um valor válido.
+              </div>
+            </div>
+            <div class="col-md-4 mb-4 mt-4">
+              <label>Diâmetro (mm)</label>
+              <input type="number" class="form-control" id="diametro" value="1.75" required>
+
+            </div>
+            <div class="col-md-4 mb-4 mt-4">
+              <label>Densidade (g/cm³)</label>
+              <div class="input-group">
+                <input type="number" class="form-control" id="densidade" value="1.04" required>
+              </div>
+            </div>
+
+            <label> Peso do carretel utilizado: </label>
+
+            <div class="custom-control custom-radio custom-control-inline ml-2">
+              <input type="radio" id="1kg" name="peso_carretel_radius" value="1000" class="custom-control-input"
+                required onclick="valida()">
+              <label class="custom-control-label" for="1kg">1kg</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="500gr" name="peso_carretel_radius" value="500" required
+                class="custom-control-input" onclick="valida()">
+              <label class="custom-control-label" for="500gr" required>500gr</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="250gr" name="peso_carretel_radius" value="250" required
+                class="custom-control-input" onclick="valida()">
+              <label class="custom-control-label" for="250gr" required>250gr</label>
+            </div>
+          </div>
+
+          <hr>
+          <!---------------------------------------------------------------------------------------------------------------->
+
+          <div class="form-row mt-4">
+            <div class="col-md-4 mb-4">
+              <label for="horas"><i class="far fa-dot-circle" style="color: rgb(38, 11, 136)"></i> Hora(s)</label>
+              <input type="number" class="form-control" id="horas" placeholder="00" onkeyup="valida()" required>
+            </div>
+            <div class="col-md-4 mb-4 ">
+              <label>Minuto(s)</label>
+              <input type="number" class="form-control" id="minutos" value="00" required>
+            </div>
+            <div class="col-md-4 mb-4 ">
+              <label>Segundo(s)</label>
+              <div class="input-group">
+                <input type="number" class="form-control" id="segundos" value="00" required>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+          <!---------------------------------------------------------------------------------------------------------------->
+
+          <div class="form-row mt-4">
+            <div class="col">
+              <label><i class="far fa-dot-circle" style="color: rgb(38, 11, 136)"></i> Preço Kg do filamento</label>
+              <input type="number" class="form-control" id="preco_filamento" placeholder="Exemplo: 00.00"
+                onkeyup="valida()" required>
+            </div>
+            <div class="col">
+              <label> Preço KwH </label>
+              <input type="number" class="form-control" id="preco_kwh" value="0.60" required>
+            </div>
+          </div>
+
+
+          <div class="form-row mt-4">
+            <div class="col">
+              <label><i class="far fa-dot-circle" style="color: rgb(38, 11, 136)"></i> Consumo impressora (W)</label>
+              <input type="number" class="form-control" id="consumo_impressora" placeholder="00" onkeyup="valida()"
+                required>
+            </div>
+            <div class="col">
+              <label><i class="far fa-dot-circle" style="color: rgb(38, 11, 136)"></i> Depreciaçāo(%)</label>
+              <input type="number" class="form-control" id="depreciacao" placeholder="Valor em porcentagem"
+                onkeyup="valida()" required>
+            </div>
+          </div>
+
+          <hr>
+          <!---------------------------------------------------------------------------------------------------------------->
+
+          <div class="form-row mt-4">
+            <div class="col">
+              <label>Adicional por hora (R$)</label>
+              <input type="number" class="form-control" data-toggle="tooltip" id="adicional" value="00.00" required>
+            </div>
+            <div class="col">
+              <label> Lucro(%) </label>
+              <input type="text" class="form-control" id="lucro" value="00" required>
+            </div>
+          </div>
+
+          <div class="form-row mt-2">
+            <div class="col mt-4 mb-2">
+
+              <button type="reset" class="btn btn-danger btn-lg btn-block"> Limpar </button>
+              <button type="button" class="btn btn-primary btn-lg btn-block" id="botaoCalcular" disabled>
+                Calcular </button>
+              <input type="hidden" onclick="calculo()" class="botaoCalcular" id="botaoAcao" data-toggle="modal"
+                data-target="#modalResultados">
+
+                <label> <i class="far fa-dot-circle" style="color: rgb(38, 11, 136)"></i> = Campos obrigatórios para o cálculo </label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+  <script>
+
+
+    //Validacao dos dados para o calculo ------------------------------------------------------------------------
+    function valida() {
+      (function () {
+        var hora = document.getElementById('horas').value;
+        var comprimento = document.getElementById('comprimento').value;
+        var preco_kg_filamento = document.getElementById('preco_filamento').value;
+        var consumo_impressora = document.getElementById('consumo_impressora').value;
+        var depreciacao = document.getElementById('depreciacao').value;
+        var carretel_radius = document.getElementById('1kg').value;
+        var carretel_radius = document.getElementById('500gr').value;
+        var carretel_radius = document.getElementById('250gr').value;
+
+
+        if (hora != '' && comprimento != '' && preco_kg_filamento != '' && consumo_impressora != '' && depreciacao != '' && carretel_radius != '') {
+          document.getElementById('botaoCalcular').disabled = false;
+        }
+        else
+          document.getElementById('botaoCalcular').disabled = true;
+      })();
+    }
+
+    //CLICAR NO BOTAO HIDDEN QUE PUXA A MODAL---------------------------------------------------------------------
+    var clickButton = document.querySelector("#botaoCalcular");
+    clickButton.addEventListener('click', displayDialog, false);
+    function displayDialog(e) {
+      document.getElementById("botaoAcao").click();
+    }
+
+    //Funções de mostragem ---------------------------------------------------------------------------------------
+    function mostra_tempo() {
+      var hora = document.getElementById('horas').value;
+      var minuto = document.getElementById('minutos').value;
+      var segundo = document.getElementById('segundos').value;
+
+      var msg = hora + ":" + minuto + ":" + segundo;
+      document.getElementById('lbl_tempo_convertido').innerHTML = msg;
+    }
+
+    function mostra_lucro() {
+      var lucro = document.getElementById('lucro').value;
+
+      var msg = lucro + "%";
+      document.getElementById('lbl_lucro').innerHTML = msg;
+    }
+
+    function mostra_energia_gasta(energia_gasta, preco_energia_gasta) {
+      var msg = energia_gasta.toFixed(2) + "KwH";
+      var msg1 = preco_energia_gasta.toFixed(2);
+      document.getElementById('lbl_energia').innerHTML = msg;
+      document.getElementById('lbl_rs_energia').innerHTML = msg1;
+    }
+
+
+    //Calculo de gastos--------------------------------------------------------------------------------------------
+    function calculo() {
+      //calculo de conversāo do tempo para minutos.
+      var hora = Number(document.getElementById('horas').value);
+      var minuto = Number(document.getElementById('minutos').value);
+      var segundo = Number(document.getElementById('segundos').value);
+
+
+      //conversao de tempo para horas---------------------------------------------------------------------
+      var hora = Number(hora);
+      var minuto = Number(minuto);
+      //console.log("horas: " + hora + " minutos: " + minuto);
+      var tempo_convertido = (((hora * 60) + minuto) / 60);
+
+      //calculo gasto de energia--------------------------------------------------------------------------
+      var consumo_impressora = Number(document.getElementById('consumo_impressora').value / 1000);
+      var kwh_preco = Number(document.getElementById('preco_kwh').value);
+      var energia_gasta = (consumo_impressora * tempo_convertido);
+      var preco_energia_gasta = energia_gasta * kwh_preco;
+
+      //calculo de peso-----------------------------------------------------------------------------------
+      /*
+      o peso do carretel vazio; -> média de 180 gramas
+      o peso total do carretel com filamento; -> PESO DO RADIOBUTTON SELECIONADO + PESO DO CARRETEL VAZIO
+      a densidade do material analisado. -> TABELA
+      */
+
+      //peso total - peso carretel vazio = pesoInicial
+      //pesoInicial / (3.14 * ((diametro / 2) / 10) * ((diametro / 2) / 10) * densidade);
+
+
+      if (document.getElementById('1kg').checked == true) {
+        var carretel_radius = Number(document.getElementById('1kg').value);
+      } else if (document.getElementById('500gr').checked == true) {
+        var carretel_radius = Number(document.getElementById('500gr').value);
+      } else if (document.getElementById('250gr').checked == true) {
+        var carretel_radius = Number(document.getElementById('250gr').value);
+      }
+      else {
+        console.log('selecione um puso de filamento!');
+      }
+
+      console.log('Carretel de filamento escolhido: ' + carretel_radius);
+
+      var diametro = Number(document.getElementById('diametro').value);
+      var densidade = Number(document.getElementById('densidade').value);
+
+      var comprimento_filamento = carretel_radius / (3.14 * (Math.pow(((diametro / 2) / 10), 2)) * densidade) / 100;
+      console.log('Compimento filamento: ' + comprimento_filamento.toFixed(2) + 'm');
+
+      //ACHAR PESO PEÇA
+      var peso_peca = comprimento_filamento / (Number(document.getElementById('comprimento').value) * carretel_radius);
+      var preco_peca = comprimento_filamento / (Number(document.getElementById('comprimento').value) * peso_peca);
+
+      console.log("peso peca:" + peso_peca);
+      console.log("preco peca:" + preco_peca);
+
+      //custo material = Preco do kg do filamento * (peso da peca / 1000);
+
+      //Chamando funçōes para mostragem dos dados na modal ------------------------------------------------
+      mostra_tempo();
+      mostra_lucro();
+      mostra_energia_gasta(energia_gasta, preco_energia_gasta);
+    }
+
+
+  </script>
+
+  <!-- Modal's -->
+  <div class="modal fade" id="modalResultados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Resultados</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-10 ml-4">
+              <h5 class="modal-subtitle" id="exampleModalLabel" align="center">Gastos</h5>
+              <hr>
+
+              <div class="row mt-3">
+                <div class="col-6 col-sm-6">
+                  Energia gasta:
+                  <label id="lbl_energia"></label>
+                </div>
+                <div class="col-3 col-sm-6">
+                  R$
+                  <label id='lbl_rs_energia'> </label>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-6 col-sm-6">
+                  Fabricação: R$
+                  <label> 24,00 </label>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-4 col-sm-6">
+                  Peso da peça:
+                  <label> 180gr </label>
+                </div>
+                <div class="col-6 col-sm-6">
+                  Tempo:
+                  <label id="lbl_tempo_convertido"> </label>
+                </div>
+              </div>
+              <hr>
+              <div class="row mt-3">
+                <div class="col-4 col-sm-6">
+                  Venda R$
+                  <label> 50,00 </label>
+
+                </div>
+                <div class="col-4 sm-6">
+                  Lucro:
+                  <label id="lbl_lucro"> </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal"> Ok </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</body>
+
+</html>
