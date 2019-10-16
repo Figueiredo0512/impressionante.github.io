@@ -27,23 +27,25 @@
 <body style="background-color: rgb(202, 199, 199)">
 
   <header>
-      <div class="container-fluid ">
-        <nav class="navbar navbar-light bg-light">
-          <a class="navbar-brand">   <h4>  <i class="fas fa-cubes"> </i> Impressioante 3D </h4> </a> 
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-             <h4> <a class="nav-link" href="index.html">Home</a> </h4>
-            </li>
-            <li class="nav-item">
-             <h4> <a class="nav-link" href="sobre.html">Quem Somos</a> </h4> 
-            </li>
-            <li class="nav-item">
-              <h4>  <a class="nav-link" href="calculadora.html">Calculadora</a> </h4>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <div class="container-fluid ">
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">
+          <h4> <i class="fas fa-cubes"> </i> Impressioante 3D </h4>
+        </a>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <h4> <a class="nav-link" href="index.html">Home</a> </h4>
+          </li>
+          <li class="nav-item">
+            <h4> <a class="nav-link" href="sobre.html">Quem Somos</a> </h4>
+          </li>
+          <li class="nav-item">
+            <h4> <a class="nav-link" href="calculadora.html">Calculadora</a> </h4>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <main>
     <div class="container">
@@ -223,7 +225,8 @@
               <input type="hidden" onclick="calculo()" class="botaoCalcular" id="botaoAcao" data-toggle="modal"
                 data-target="#modalResultados">
 
-                <label> <i class="far fa-dot-circle" style="color: rgb(38, 11, 136)"></i> = Campos obrigatórios para o cálculo </label>
+              <label> <i class="far fa-dot-circle" style="color: rgb(38, 11, 136)"></i> = Campos obrigatórios para o
+                cálculo </label>
             </div>
           </div>
         </form>
@@ -307,15 +310,6 @@
       var preco_energia_gasta = energia_gasta * kwh_preco;
 
       //calculo de peso-----------------------------------------------------------------------------------
-      /*
-      o peso do carretel vazio; -> média de 180 gramas
-      o peso total do carretel com filamento; -> PESO DO RADIOBUTTON SELECIONADO + PESO DO CARRETEL VAZIO
-      a densidade do material analisado. -> TABELA
-      */
-
-      //peso total - peso carretel vazio = pesoInicial
-      //pesoInicial / (3.14 * ((diametro / 2) / 10) * ((diametro / 2) / 10) * densidade);
-
 
       if (document.getElementById('1kg').checked == true) {
         var carretel_radius = Number(document.getElementById('1kg').value);
@@ -325,20 +319,29 @@
         var carretel_radius = Number(document.getElementById('250gr').value);
       }
       else {
-        console.log('selecione um puso de filamento!');
+        alert('selecione um peso de filamento!');
       }
-
-      console.log('Carretel de filamento escolhido: ' + carretel_radius);
 
       var diametro = Number(document.getElementById('diametro').value);
       var densidade = Number(document.getElementById('densidade').value);
 
-      var comprimento_filamento = carretel_radius / (3.14 * (Math.pow(((diametro / 2) / 10), 2)) * densidade) / 100;
+      var comprimento_filamento = carretel_radius / (3.14 * (Math.pow(((diametro / 2) / 10), 2)) * densidade) * 10;
       console.log('Compimento filamento: ' + comprimento_filamento.toFixed(2) + 'm');
 
-      //ACHAR PESO PEÇA
-      var peso_peca = comprimento_filamento / (Number(document.getElementById('comprimento').value) * carretel_radius);
-      var preco_peca = comprimento_filamento / (Number(document.getElementById('comprimento').value) * peso_peca);
+      //ACHAR PESO e PRECO da peca
+
+      var depreciacao = Number(document.getElementById('depreciacao').value);
+      var preco_filamento = document.getElementById('preco_filamento').value;
+      var comp = Number(document.getElementById('comprimento').value);
+      var peso_peca =  (comp * carretel_radius) / comprimento_filamento;
+      var preco_peca = ((peso_peca * preco_filamento) / carretel_radius) + preco_energia_gasta; 
+      var preco_peca = preco_peca + ((depreciacao / 100) * peso_peca);
+      var lucro = Number((document.getElementById('lucro').value) / 100) * preco_peca;
+      var preco_peca_lucro = preco_peca + lucro; 
+
+      document.getElementById('lbl_peso').innerHTML = peso_peca.toFixed(2) + 'gr';
+      document.getElementById('lbl_custo').innerHTML = 'R$' + preco_peca.toFixed(2);
+      document.getElementById('lbl_venda').innerHTML = 'R$' + preco_peca_lucro.toFixed(2);
 
       console.log("peso peca:" + peso_peca);
       console.log("preco peca:" + preco_peca);
@@ -346,11 +349,10 @@
       //custo material = Preco do kg do filamento * (peso da peca / 1000);
 
       //Chamando funçōes para mostragem dos dados na modal ------------------------------------------------
-      mostra_tempo();
-      mostra_lucro();
-      mostra_energia_gasta(energia_gasta, preco_energia_gasta);
+      mostra_tempo();  
+      mostra_lucro();                                         // ok
+      mostra_energia_gasta(energia_gasta, preco_energia_gasta);  // ok
     }
-
 
   </script>
 
@@ -384,15 +386,15 @@
 
               <div class="row mt-3">
                 <div class="col-6 col-sm-6">
-                  Fabricação: R$
-                  <label> 24,00 </label>
+                  Fabricação:
+                  <label id='lbl_custo'> </label>
                 </div>
               </div>
 
               <div class="row mt-3">
                 <div class="col-4 col-sm-6">
                   Peso da peça:
-                  <label> 180gr </label>
+                  <label id="lbl_peso"> </label>
                 </div>
                 <div class="col-6 col-sm-6">
                   Tempo:
@@ -402,8 +404,8 @@
               <hr>
               <div class="row mt-3">
                 <div class="col-4 col-sm-6">
-                  Venda R$
-                  <label> 50,00 </label>
+                  Venda
+                  <label id='lbl_venda'> </label>
 
                 </div>
                 <div class="col-4 sm-6">
